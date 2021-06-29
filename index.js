@@ -17,7 +17,7 @@ redis.defineCommand("dellock", {
 })
 
 express()
-  .post("/lock/:id/:nonce", async (req, res) => {
+  .put("/lock/:id/:nonce", async (req, res) => {
     let result =
       await redis.set(req.params.id, req.params.nonce, "NX", "EX", 120)
 
