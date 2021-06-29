@@ -1,5 +1,6 @@
 let express = require("express")
 let Redis = require("ioredis")
+let cors = require("cors")
 
 const PORT = process.env.PORT || 5000
 
@@ -17,6 +18,7 @@ redis.defineCommand("dellock", {
 })
 
 express()
+  .use(cors)
   .put("/lock/:id/:nonce", async (req, res) => {
     let result =
       await redis.set(req.params.id, req.params.nonce, "NX", "EX", 120)
@@ -41,4 +43,4 @@ express()
       res.end("lock nonce mismatch")
     }
   })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`))
