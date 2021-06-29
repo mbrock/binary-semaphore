@@ -24,11 +24,11 @@ app.options("*", cors())
 
 app.put("/lock/:id/:nonce", async (req, res) => {
     let result =
-      await redis.set(req.params.id, req.params.nonce, "NX", "EX", 120)
+      await redis.set(req.params.id, req.params.nonce, "NX", "EX", 70)
 
     if (result === "OK") {
       res.writeHead(200)
-      res.end("lock acquired; expiring in 120s")
+      res.end("lock acquired; expiring in 70s")
     } else {
       res.writeHead(423)
       res.end("lock already acquired")
