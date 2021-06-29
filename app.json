@@ -1,0 +1,5 @@
+{
+  "name": "Binary Semaphore",
+  "description": "A simple web service for mutual exclusion",
+  "repository": "https://github.com/mbrock/binary-semaphore"
+}
