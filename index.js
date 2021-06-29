@@ -17,10 +17,12 @@ redis.defineCommand("dellock", {
   `
 })
 
-express()
-  .use(cors)
-  .options("/lock/:id/:nonce", cors())
-  .put("/lock/:id/:nonce", async (req, res) => {
+let app = express()
+
+app.use(cors())
+app.options("*", cors())
+
+app.put("/lock/:id/:nonce", async (req, res) => {
     let result =
       await redis.set(req.params.id, req.params.nonce, "NX", "EX", 120)
 
@@ -31,8 +33,9 @@ express()
       res.writeHead(423)
       res.end("lock already acquired")
     }
-  })
-  .delete("/lock/:id/:nonce", async (req, res) => {
+})
+
+app.delete("/lock/:id/:nonce", async (req, res) => {
     let result =
       await redis.dellock(req.params.id, req.params.nonce)
 
@@ -43,5 +46,6 @@ express()
       res.writeHead(409)
       res.end("lock nonce mismatch")
     }
-  })
-  .listen(PORT, () => console.log(`Listening on ${PORT}`))
+})
+
+app.listen(PORT, () => console.log(`Listening on ${PORT}`))
