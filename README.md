@@ -22,4 +22,4 @@ It's useful e.g. if you have several browser scripts that need to use some resou
 
 To run this on Glitch you'll need to configure a Redis instance somewhere you can connect to. Redis offers a free tier that should be sufficient for many purposes here.
 
-Navigate to <https://redis.com/try-free/>, sign up, and allow Redis to create your default database. Once created, click on "Connect" and copy the Redis url (ask Redis to replace username and password for you) and add that value in your `.env` file.
+Navigate to <https://redis.com/try-free/>, sign up, and allow Redis to create your default database. Once created, click on "Connect" and copy the Redis url (ask Redis to replace username and password for you) and add that value in your `.env` file as `REDIS_URL`.
