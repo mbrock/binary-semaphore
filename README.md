@@ -14,7 +14,7 @@ That should probably be configurable.
 
 CORS is allowed for any domain origin.
 
-We use this in [https://github.com/mbrock/telegroam](Telegroam).
+This is used in in e.g. [https://github.com/mbrock/telegroam](Telegroam).
 
 It's useful e.g. if you have several browser scripts that need to use some resource without conflicting with each other.
 
